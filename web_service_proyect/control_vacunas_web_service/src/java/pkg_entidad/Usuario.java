@@ -6,7 +6,9 @@
 package pkg_entidad;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,9 +16,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -31,6 +35,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Usuario.findByNombre", query = "SELECT u FROM Usuario u WHERE u.nombre = :nombre")
     , @NamedQuery(name = "Usuario.findByCorreo", query = "SELECT u FROM Usuario u WHERE u.correo = :correo")})
 public class Usuario implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPadre")
+    private Collection<Hijo> hijoCollection;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -99,6 +106,15 @@ public class Usuario implements Serializable {
     @Override
     public String toString() {
         return "pkg_entidad.Usuario[ id=" + id + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Hijo> getHijoCollection() {
+        return hijoCollection;
+    }
+
+    public void setHijoCollection(Collection<Hijo> hijoCollection) {
+        this.hijoCollection = hijoCollection;
     }
     
 }
