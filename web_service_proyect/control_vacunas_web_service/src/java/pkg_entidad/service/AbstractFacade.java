@@ -7,6 +7,13 @@ package pkg_entidad.service;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import javax.persistence.metamodel.EntityType;
+import javax.persistence.metamodel.Metamodel;
+import pkg_entidad.Hijo;
+import pkg_entidad.Usuario;
 
 /**
  *
@@ -33,11 +40,28 @@ public abstract class AbstractFacade<T> {
     public void remove(T entity) {
         getEntityManager().remove(getEntityManager().merge(entity));
     }
-
+    
     public T find(Object id) {
         return getEntityManager().find(entityClass, id);
     }
+    
+    public Usuario find_usuario(Object id) {
+        return getEntityManager().find(Usuario.class, id);
+    }
 
+    public List<T> find_hijos(Object id) {
+        Usuario padre = this.find_usuario(id);
+        CriteriaBuilder qb = getEntityManager().getCriteriaBuilder();
+	CriteriaQuery<Hijo> q = qb.createQuery(Hijo.class);
+	Root<Hijo> root = q.from(Hijo.class);
+	q.where(qb.equal(root.get("idPadre"), padre));
+        return (List<T>) getEntityManager().createQuery(q).getResultList();
+        /*javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        cq.select(cq.from(Hijo.class));
+        cq.where(cq.equals(Hijo.getIdPadre(), id));*/
+        //return getEntityManager().createQuery(cq).getResultList();
+    }
+    
     public List<T> findAll() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));

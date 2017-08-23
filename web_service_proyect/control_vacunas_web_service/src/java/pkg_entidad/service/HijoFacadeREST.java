@@ -48,7 +48,7 @@ public class HijoFacadeREST extends AbstractFacade<Hijo> {
     public void edit(@PathParam("id") Integer id, Hijo entity) {
         super.edit(entity);
     }
-
+    
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") Integer id) {
@@ -60,6 +60,13 @@ public class HijoFacadeREST extends AbstractFacade<Hijo> {
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Hijo find(@PathParam("id") Integer id) {
         return super.find(id);
+    }
+    
+    @GET
+    @Path("/padre/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Hijo> find_hijos(@PathParam("id") Integer id) {
+        return super.find_hijos(id);
     }
 
     @GET
