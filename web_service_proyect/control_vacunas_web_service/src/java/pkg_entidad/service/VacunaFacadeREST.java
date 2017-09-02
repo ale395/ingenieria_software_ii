@@ -18,34 +18,34 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import pkg_entidad.Hijo;
+import pkg_entidad.Vacuna;
 
 /**
  *
  * @author Hiro
  */
 @Stateless
-@Path("pkg_entidad.hijo")
-public class HijoFacadeREST extends AbstractFacade<Hijo> {
+@Path("pkg_entidad.vacunas")
+public class VacunaFacadeREST extends AbstractFacade<Vacuna> {
 
     @PersistenceContext(unitName = "control_vacunas_web_servicePU")
     private EntityManager em;
 
-    public HijoFacadeREST() {
-        super(Hijo.class);
+    public VacunaFacadeREST() {
+        super(Vacuna.class);
     }
 
     @POST
     @Override
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void create(Hijo entity) {
+    public void create(Vacuna entity) {
         super.create(entity);
     }
 
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public void edit(@PathParam("id") Integer id, Hijo entity) {
+    public void edit(@PathParam("id") Integer id, Vacuna entity) {
         super.edit(entity);
     }
 
@@ -58,21 +58,21 @@ public class HijoFacadeREST extends AbstractFacade<Hijo> {
     @GET
     @Path("{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Hijo find(@PathParam("id") Integer id) {
+    public Vacuna find(@PathParam("id") Integer id) {
         return super.find(id);
     }
 
     @GET
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Hijo> findAll() {
+    public List<Vacuna> findAll() {
         return super.findAll();
     }
 
     @GET
     @Path("{from}/{to}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Hijo> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
+    public List<Vacuna> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
         return super.findRange(new int[]{from, to});
     }
 

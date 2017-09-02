@@ -6,7 +6,9 @@
 package pkg_entidad;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,10 +18,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -36,6 +40,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Hijo.findByEdad", query = "SELECT h FROM Hijo h WHERE h.edad = :edad")})
 public class Hijo implements Serializable {
 
+    @Column(name = "edad")
+    private Integer edad;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idHijo")
+    private Collection<Vacuna> vacunasCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,11 +59,7 @@ public class Hijo implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "sexo")
-    private Character sexo;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "edad")
-    private int edad;
+    private String sexo;
     @JoinColumn(name = "id_padre", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Usuario idPadre;
@@ -66,7 +71,7 @@ public class Hijo implements Serializable {
         this.id = id;
     }
 
-    public Hijo(Integer id, String nombre, Character sexo, int edad) {
+    public Hijo(Integer id, String nombre, String sexo, int edad) {
         this.id = id;
         this.nombre = nombre;
         this.sexo = sexo;
@@ -89,21 +94,14 @@ public class Hijo implements Serializable {
         this.nombre = nombre;
     }
 
-    public Character getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(Character sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
 
     public Usuario getIdPadre() {
         return idPadre;
@@ -136,6 +134,23 @@ public class Hijo implements Serializable {
     @Override
     public String toString() {
         return "pkg_entidad.Hijo[ id=" + id + " ]";
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
+
+    @XmlTransient
+    public Collection<Vacuna> getVacunasCollection() {
+        return vacunasCollection;
+    }
+
+    public void setVacunasCollection(Collection<Vacuna> vacunasCollection) {
+        this.vacunasCollection = vacunasCollection;
     }
     
 }
