@@ -22,7 +22,7 @@ import pkg_entidad.Usuario;
 
 /**
  *
- * @author Hiro
+ * @author afernandez
  */
 @Stateless
 @Path("pkg_entidad.usuario")
