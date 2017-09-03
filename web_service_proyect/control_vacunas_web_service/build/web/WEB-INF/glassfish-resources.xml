@@ -21,4 +21,5 @@
         <property name="driverClass" value="org.postgresql.Driver"/>
     </jdbc-connection-pool>
     <jdbc-resource enabled="true" jndi-name="java:app/control_vacunas" object-type="user" pool-name="post-gre-sql_control_vacunas_postgresPool_1"/>
+    <jdbc-resource enabled="true" jndi-name="java:app/control_vacunas" object-type="user" pool-name="post-gre-sql_control_vacunas_postgresPool_1"/>
 </resources>

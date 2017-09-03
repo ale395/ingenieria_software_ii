@@ -22,7 +22,7 @@ import pkg_entidad.Hijo;
 
 /**
  *
- * @author afernandez
+ * @author Hiro
  */
 @Stateless
 @Path("pkg_entidad.hijo")
@@ -48,7 +48,7 @@ public class HijoFacadeREST extends AbstractFacade<Hijo> {
     public void edit(@PathParam("id") Integer id, Hijo entity) {
         super.edit(entity);
     }
-    
+
     @DELETE
     @Path("{id}")
     public void remove(@PathParam("id") Integer id) {

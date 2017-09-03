@@ -14,6 +14,7 @@ import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.Metamodel;
 import pkg_entidad.Hijo;
 import pkg_entidad.Usuario;
+import pkg_entidad.Vacuna;
 
 /**
  *
@@ -60,6 +61,20 @@ public abstract class AbstractFacade<T> {
         cq.select(cq.from(Hijo.class));
         cq.where(cq.equals(Hijo.getIdPadre(), id));*/
         //return getEntityManager().createQuery(cq).getResultList();
+    }
+    
+    public Hijo find_hijos_vacunas(Object id) {
+        return getEntityManager().find(Hijo.class, id);
+    }
+	
+    public List<T> find_vacunas(Object id) {
+        Hijo hijos = this.find_hijos_vacunas(id);
+        CriteriaBuilder qb = getEntityManager().getCriteriaBuilder();
+        CriteriaQuery<Vacuna> q = qb.createQuery(Vacuna.class);
+        Root<Vacuna> root = q.from(Vacuna.class);
+        q.where(qb.equal(root.get("idHijo"), hijos));
+        return (List<T>) getEntityManager().createQuery(q).getResultList();
+
     }
     
     public List<T> findAll() {
