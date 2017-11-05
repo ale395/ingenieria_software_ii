@@ -64,7 +64,7 @@ public class HijoFacadeREST extends AbstractFacade<Hijo> {
     
     @GET
     @Path("/padre/{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Hijo> find_hijos(@PathParam("id") Integer id) {
         return super.find_hijos(id);
     }

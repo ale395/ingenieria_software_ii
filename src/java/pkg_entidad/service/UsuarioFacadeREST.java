@@ -64,7 +64,8 @@ public class UsuarioFacadeREST extends AbstractFacade<Usuario> {
     
     @GET
     @Path("usuario/{correo}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces(MediaType.APPLICATION_JSON)
+    //@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Usuario find_correo(@PathParam("correo") String correo) {
         return super.find_usuario_por_correo(correo);
     }
