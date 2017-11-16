@@ -64,7 +64,7 @@ public class VacunaFacadeREST extends AbstractFacade<Vacuna> {
     
     @GET
     @Path("/hijo/{id}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
     public List<Vacuna> find_vacunas(@PathParam("id") Integer id) {
         return super.find_vacunas(id);
     }
@@ -94,6 +94,5 @@ public class VacunaFacadeREST extends AbstractFacade<Vacuna> {
     @Override
     protected EntityManager getEntityManager() {
         return em;
-    }
-    
+    }   
 }
