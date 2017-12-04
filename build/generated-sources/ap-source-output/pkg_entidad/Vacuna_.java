@@ -6,7 +6,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import pkg_entidad.Hijo;
 
-@Generated(value="EclipseLink-2.6.1.v20150605-rNA", date="2017-11-04T15:30:31")
+@Generated(value="EclipseLink-2.6.1.v20150605-rNA", date="2017-11-16T15:35:09")
 @StaticMetamodel(Vacuna.class)
 public class Vacuna_ { 
 

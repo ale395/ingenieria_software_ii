@@ -7,7 +7,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import pkg_entidad.Usuario;
 import pkg_entidad.Vacuna;
 
-@Generated(value="EclipseLink-2.6.1.v20150605-rNA", date="2017-11-04T15:30:31")
+@Generated(value="EclipseLink-2.6.1.v20150605-rNA", date="2017-11-16T15:35:09")
 @StaticMetamodel(Hijo.class)
 public class Hijo_ { 
 
